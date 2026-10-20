@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — Linuxify</title>
+  <meta name="description" content="Every Linuxify alpha release, from alpha.1 to the latest — what shipped, what broke, what got fixed. Honest release notes, verbatim.">
+  <link rel="canonical" href="https://bilal140202.github.io/linuxify-app/changelog/">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Linuxify">
+  <meta property="og:title" content="Changelog — Linuxify">
+  <meta property="og:description" content="Every alpha release, honestly annotated — what shipped, what broke, what got fixed.">
+  <meta property="og:url" content="https://bilal140202.github.io/linuxify-app/changelog/">
+  <meta property="og:image" content="https://bilal140202.github.io/linuxify-app/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+          <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+        </svg>
+        <span>linuxify</span><span class="tag">/ android</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../#features">Features</a>
+        <a href="../#terminal">Terminal</a>
+        <a href="../#download">Download</a>
+        <a href="../#faq">FAQ</a>
+        <a href="../about/">About</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn magnetic" href="../#download">
+          <span class="btn-flip"><span class="btn-flip__labels"><span>Get the APK</span><span>Get the APK</span></span></span>
+        </a>
+        <button class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="m-link" href="../#features"><span class="idx">01</span>Features</a>
+      <a class="m-link" href="../#terminal"><span class="idx">02</span>Terminal</a>
+      <a class="m-link" href="../#download"><span class="idx">03</span>Download</a>
+      <a class="m-link" href="../#faq"><span class="idx">04</span>FAQ</a>
+      <a class="m-link" href="../about/"><span class="idx">05</span>About</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <span class="mono">v0.1.0-alpha.15</span>
+      <a class="mono" href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero__crumbs mono">
+          <a href="../">~/linuxify</a><span class="sep">/</span><span class="current">changelog</span>
+        </div>
+        <h1 data-reveal>Every alpha,<br><span class="accent-type">on the record.</span></h1>
+        <p class="lead" data-reveal>Fifteen releases in nine days. Production releases ship from the
+        main repository's release cycle — APKs are mirrored here for convenience. Every entry links to
+        its official release with checksums.</p>
+        <div class="page-hero__meta">
+          <span>current <b>v0.1.0-alpha.15</b></span>
+          <span>cycle started <b>October 17, 2026</b></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="container">
+        <div data-reveal-group>
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.15 <span class="badge">latest</span></div>
+              <span class="rel__date mono">October 19, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Persistence, Backup &amp; Restore, Cache Management</div>
+              <ul class="rel__list">
+                <li>Terminal sessions persist as full transcripts (scrollback + screen) with metadata; previous runs return as read-only history tabs.</li>
+                <li>One-tap .tar.gz backup via the system file picker; scoped restore (projects / history / environment) with keep-vs-overwrite.</li>
+                <li>Per-project and whole-system cache cleanup with exact-bytes reporting.</li>
+                <li>144/144 unit tests · APK SHA-256 published on the release.</li>
+              </ul>
+              <ul class="rel__list" style="margin-top:0.6rem">
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.15" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.14</div>
+              <span class="rel__date mono">October 19, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">alpha.13 audit &amp; hardening</div>
+              <ul class="rel__list">
+                <li>APT search fixed; eight issues from the alpha.13 audit closed.</li>
+                <li>Hardening across the Universal Software Management System paths.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.14" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.13</div>
+              <span class="rel__date mono">October 19, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Universal Software Management System</div>
+              <ul class="rel__list">
+                <li>Searchable Software catalog: System / Dev / AI / Network / Media / Data / Text.</li>
+                <li>Installs via APT, npm, pip and checksum-pinned static binaries — with automatic prerequisites and per-tool run verification.</li>
+                <li>Custom user tools flow through the same core; one-tap update &amp; upgrade.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.13" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.12</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Dependency &amp; Package Recovery Manager</div>
+              <ul class="rel__list">
+                <li>Environment audit: Ubuntu version, architecture, storage, network, package-manager health.</li>
+                <li>Repairs the package manager only when it is actually inconsistent — never blindly on launch.</li>
+                <li>BASE environment (curl + HTTPS trust) by default; optional developer profile (git, Node.js, npm).</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.12" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.11</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Clean prompt + in-shell run notifications</div>
+              <ul class="rel__list">
+                <li>Prompt cleanup and in-shell notification of completed background runs.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.11" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.10</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Background running + completion notifications</div>
+              <ul class="rel__list">
+                <li>Foreground service keeps sessions and servers alive through screen-off and app switches.</li>
+                <li>"Run completed" notifications when left commands finish; suppressed while you're watching.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.10" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.9</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Share terminal log to any AI</div>
+              <ul class="rel__list">
+                <li>Floating button shares the whole session log to any chat or AI app in two taps.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.9" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.8</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Terminal Copy/Paste fixed</div>
+              <ul class="rel__list">
+                <li>Long-press Copy/Paste now wired to the real Android clipboard.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.8" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.7</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Termux-true terminal</div>
+              <ul class="rel__list">
+                <li>Keyboard works, real font size, no more group warnings or jank.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.7" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.6</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Three on-device crashes fixed</div>
+              <ul class="rel__list">
+                <li>Terminal NPE and Services measure crash eliminated.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.6" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.5</div>
+              <span class="rel__date mono">October 18, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Zero silent crashes</div>
+              <ul class="rel__list">
+                <li>Global crash reporter with in-app copyable trace — every crash introduces itself.</li>
+                <li>Binary-verified ready gate and a runtime diagnostics row in Home.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.5" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.4</div>
+              <span class="rel__date mono">October 17, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">proot's un-bundled ELF loader shipped</div>
+              <ul class="rel__list">
+                <li>Root cause of execve ENOENT/EACCES on device fixed — the loader now travels with the app.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.4" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.3</div>
+              <span class="rel__date mono">October 17, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Zero-error auto self-setup install</div>
+              <ul class="rel__list">
+                <li>Rootfs extraction no longer drops '..' symlinks that broke the ELF loader chain.</li>
+                <li>Stable signing introduced for overwrite installs.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.3" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.2</div>
+              <span class="rel__date mono">October 17, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">Device-found startup bug fixed (self-setup)</div>
+              <ul class="rel__list">
+                <li>First on-device startup failure fixed; runtime install became self-setup like the CLI.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.2" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="rel">
+            <div>
+              <div class="rel__ver">v0.1.0-alpha.1</div>
+              <span class="rel__date mono">October 17, 2026</span>
+            </div>
+            <div>
+              <div class="rel__name">The first alpha</div>
+              <ul class="rel__list">
+                <li>proot + Ubuntu install pipeline, PTY terminal, projects — the core loop, working end to end.</li>
+                <li><a href="https://github.com/superz1402/linuxify/releases/tag/v0.1.0-alpha.1" rel="noopener" target="_blank">Official release ↗</a></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__pitch">
+          <a class="nav__brand" href="../">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+              <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+            </svg>
+            <span>linuxify</span><span class="tag">/ android</span>
+          </a>
+          <p>A real Ubuntu userspace, a real terminal, real tools — running locally on the device
+          you already own. Free and open source under GPL-3.0-or-later.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="../#features">Features</a></li>
+            <li><a href="../#terminal">Terminal</a></li>
+            <li><a href="../#download">Download</a></li>
+            <li><a href="../#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="../about/">About</a></li>
+            <li><a href="./">Changelog</a></li>
+            <li><a href="../privacy/">Privacy policy</a></li>
+            <li><a href="../terms/">Terms of use</a></li>
+            <li><a href="../license/">Licenses</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">Source &amp; issues <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/superz1402/linuxify/releases" rel="noopener" target="_blank">Releases <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://ansaribilal.com" rel="noopener" target="_blank">Developer site <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/Bilal140202" rel="noopener" target="_blank">GitHub profile <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">linuxify</div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span class="mono">© <span data-year>2026</span> Ansari Mohammad Bilal</span>
+        <span class="mono">GPL-3.0-or-later</span>
+        <span class="mono">v0.1.0-alpha.15</span>
+        <span class="mono">no cookies · no trackers · no analytics</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

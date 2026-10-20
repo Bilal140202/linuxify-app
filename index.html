@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linuxify — Real Linux on Android. No root, no cloud.</title>
+  <meta name="description" content="Linuxify turns your Android device into a local Linux workstation: a genuine Ubuntu 24.04 userspace, a real PTY terminal, and a package system for APT, npm, pip and static binaries. No root, no cloud, free and open source.">
+  <link rel="canonical" href="https://bilal140202.github.io/linuxify-app/">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Linuxify">
+  <meta property="og:title" content="Linuxify — Real Linux on Android. No root, no cloud.">
+  <meta property="og:description" content="A genuine Ubuntu 24.04 userspace, a real PTY terminal and universal package management — running locally on your Android. Free, open source, no accounts.">
+  <meta property="og:url" content="https://bilal140202.github.io/linuxify-app/">
+  <meta property="og:image" content="https://bilal140202.github.io/linuxify-app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Linuxify — Real Linux on Android. No root, no cloud.">
+  <meta name="twitter:description" content="Ubuntu 24.04 userspace · PTY terminal · APT / npm / pip · backup &amp; restore. Free and open source.">
+  <meta name="twitter:image" content="https://bilal140202.github.io/linuxify-app/assets/img/og.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <!-- Fonts: Clash Display + Satoshi (Fontshare), JetBrains Mono (Google) -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Motion stack (graceful if unavailable) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Linuxify",
+    "operatingSystem": "Android 8.0+",
+    "applicationCategory": "DeveloperApplication",
+    "softwareVersion": "0.1.0-alpha.15",
+    "license": "GPL-3.0-or-later",
+    "url": "https://bilal140202.github.io/linuxify-app/",
+    "downloadUrl": "https://github.com/Bilal140202/linuxify-app/releases/download/v0.1.0-alpha.15/linuxify-0.1.0-alpha.15-release.apk",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Ansari Mohammad Bilal", "url": "https://ansaribilal.com" },
+    "description": "Native Android app that runs a local Ubuntu 24.04 userspace (proot, unrooted) with a real PTY terminal, universal software management (APT, npm, pip, static binaries), projects, local servers, persistence, backup and restore."
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Preloader: a tiny, honest boot log -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__log" role="presentation"></div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+    <div class="preloader__row">
+      <span class="mono">booting userspace</span>
+      <span class="preloader__pct">000</span>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./" aria-label="Linuxify home">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+          <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+        </svg>
+        <span>linuxify</span>
+        <span class="tag">/ android</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#terminal">Terminal</a>
+        <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
+        <a href="about/">About</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn magnetic" href="#download">
+          <span class="btn-flip"><span class="btn-flip__labels"><span>Get the APK</span><span>Get the APK</span></span></span>
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v7M3 5.5L6 8.5 9 5.5M1.5 10.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="m-link" href="#features"><span class="idx">01</span>Features</a>
+      <a class="m-link" href="#terminal"><span class="idx">02</span>Terminal</a>
+      <a class="m-link" href="#download"><span class="idx">03</span>Download</a>
+      <a class="m-link" href="#faq"><span class="idx">04</span>FAQ</a>
+      <a class="m-link" href="about/"><span class="idx">05</span>About</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <span class="mono">v0.1.0-alpha.15</span>
+      <a class="mono" href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero__eyebrow">
+          <span class="hero__pulse" aria-hidden="true"></span>
+          <span class="mono mono--ink">v0.1.0-alpha.15</span>
+          <span class="mono">—</span>
+          <span class="mono">Ubuntu 24.04 LTS userspace</span>
+          <span class="mono">—</span>
+          <span class="mono">Android 8.0+</span>
+        </div>
+        <h1 class="display hero__title">
+          <span class="line"><span>Real Linux.</span></span>
+          <span class="line"><span class="outline-type">No root.</span></span>
+          <span class="line"><span class="accent-type">In your pocket.</span></span>
+        </h1>
+        <div class="hero__meta">
+          <div class="hero__lede">
+            <p class="lead">Linuxify turns your Android device into a local Linux workstation — a genuine
+            Ubuntu&nbsp;24.04 userspace, a real PTY terminal, and a package system that installs actual
+            developer tools. Everything runs on-device. Free, open source, no accounts.</p>
+            <div class="hero__actions">
+              <a class="btn btn--accent btn--lg magnetic" href="#download">
+                <span class="btn-flip"><span class="btn-flip__labels"><span>Download the APK</span><span>Download the APK</span></span></span>
+                <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v7M3 5.5L6 8.5 9 5.5M1.5 10.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="btn btn--lg magnetic" href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>View source</span>
+              </a>
+              <span class="hint">free · GPL-3.0 · 12 MB</span>
+            </div>
+          </div>
+          <div class="term" id="hero-term" data-cursor>
+            <div class="term__bar">
+              <span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="term__title">linuxify — session 01 — proot · aarch64</span>
+            </div>
+            <div class="term__body" aria-label="Terminal demo"></div>
+            <div class="term__keys" aria-hidden="true">
+              <i>ESC</i><i>CTRL</i><i>ALT</i><i>TAB</i><i>←</i><i>↑</i><i>↓</i><i>→</i><i>│</i><i>─</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__stats">
+        <div class="container">
+          <div class="stat"><b>12.0 MB</b><span>APK size</span></div>
+          <div class="stat"><b>24.04.5</b><span>Ubuntu LTS</span></div>
+          <div class="stat"><b>8.0+</b><span>Android</span></div>
+          <div class="stat"><b>144</b><span>Unit tests</span></div>
+          <div class="stat"><b>GPL-3.0</b><span>License</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>proot</span><span>Ubuntu 24.04</span><span>PTY terminal</span><span>APT</span><span>npm</span><span>pip</span><span>git</span><span>python</span><span>node.js</span><span>static binaries</span><span>no root</span><span>open source</span>
+      </div>
+    </div>
+
+    <!-- ============ 01 · WHAT ============ -->
+    <section class="section" id="what">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[01]</span>
+          <span class="sec-head__label">What it is</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="what">
+          <div class="what__left" data-reveal>
+            <span class="mono mono--accent">— definition</span>
+            <h2 class="h2">Not a mock terminal. A machine.</h2>
+          </div>
+          <div class="what__right" data-reveal>
+            <p>Most "Linux on Android" apps give you a toy shell. Linuxify stages a
+            <b>genuine Ubuntu 24.04 LTS rootfs</b> — the same userspace your servers run — and boots it
+            unrooted, in app-private storage, through <b>proot</b>. apt works. git works. python, node,
+            compilers and your dotfiles work.</p>
+            <p>On top of it sits a <b>real PTY terminal</b> (the vendored Termux emulator stack, GPLv3),
+            a software catalog that installs tools through <b>APT, npm, pip and checksum-pinned static
+            binaries</b>, project management, local servers, and a background service that keeps it all
+            alive while you use other apps.</p>
+            <p><span class="accent">And it is honest about the edges:</span> no kernel-level isolation,
+            no privileged ports, no promise against OEM battery managers — documented, not hand-waved.</p>
+            <dl class="what__facts">
+              <div class="row"><dt>App</dt><dd>com.linuxify.app — Kotlin + Jetpack Compose, native Android</dd></div>
+              <div class="row"><dt>Userspace</dt><dd>Ubuntu 24.04.5 LTS (noble), ubuntu-base arm64, checksum-pinned</dd></div>
+              <div class="row"><dt>Terminal</dt><dd>Termux terminal-emulator / terminal-view stack (vendored, GPLv3)</dd></div>
+              <div class="row"><dt>Runtime</dt><dd>proot 5.1.107.96 + libtalloc + libandroid-shmem, SHA-256 pinned</dd></div>
+              <div class="row"><dt>Storage</dt><dd>App-private — persists until uninstall, clear-data, or explicit reset</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 · CAPABILITIES ============ -->
+    <section class="section" id="features" style="padding-top:0">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[02]</span>
+          <span class="sec-head__label">Capabilities</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="caps" data-acc="single" data-reveal-group>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/01</span>
+              <span class="cap__name">Ubuntu userspace</span>
+              <span class="cap__sum">A genuine Ubuntu 24.04 LTS userspace, unrooted, in app-private storage.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>Linuxify stages <strong>ubuntu-base 24.04.5 (arm64)</strong> — staged, resumable,
+                checksum-verified — then self-heals the install: native-linker shims, exec-bit sweep,
+                integrity re-checks, stale-marker repair. proot translates filesystem paths and fakes
+                uid&nbsp;0 in user space, so an unprivileged app can run an entire Linux userspace.
+                Flaky internet is handled: HTTP-Range resume, exponential backoff with jitter,
+                verification before anything is trusted.</p>
+                <div class="cap__tags"><span>proot 5.1.107.96</span><span>arm64</span><span>checksum-pinned</span><span>resumable</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/02</span>
+              <span class="cap__name">A real terminal</span>
+              <span class="cap__sum">PTY-backed, Termux-true: extra keys, pinch-zoom, real clipboard, multi-session.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>Not a web view pretending to be a shell. Linuxify vendors the <strong>Termux
+                terminal-emulator / terminal-view stack</strong> (GPLv3, attributed): a real pseudo-terminal
+                with tap-to-keyboard, pinch-to-zoom, extra-keys rows, long-press copy/paste on the actual
+                Android clipboard, multiple sessions, and true scrollback. A floating button shares the
+                whole session log to any chat or AI app in two taps.</p>
+                <div class="cap__tags"><span>pty</span><span>multi-session</span><span>extra keys</span><span>log share</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/03</span>
+              <span class="cap__name">Background persistence</span>
+              <span class="cap__sum">Sessions and servers survive screen-off and app switches.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>A foreground service with a silent persistent notification and a partial wake lock
+                keeps the Linux userland alive while you're outside the app. When a command you left
+                running finishes — or a session or managed service exits — a <strong>"run completed"</strong>
+                notification tells you. Suppressed while you're actually watching. It releases itself
+                the moment the last session or service ends.</p>
+                <div class="cap__tags"><span>foreground service</span><span>wake lock</span><span>completion notify</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/04</span>
+              <span class="cap__name">Universal software management</span>
+              <span class="cap__sum">One searchable catalog: APT, npm, pip, and checksum-pinned static binaries.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>A searchable <strong>Software catalog</strong> (System / Dev / AI / Network / Media / Data /
+                Text) installs any tool through shared ecosystem adapters with automatic prerequisites,
+                per-tool verification that the executable actually runs, uninstall, and honest failure
+                reporting with recovery steps. Entries with several paths try them in preference order —
+                <strong>jq falls back to a pinned static binary</strong> when the APT path fails. Add custom
+                tools (apt / npm / pip, scoped npm names included), update &amp; upgrade everything in one
+                tap. The terminal stays unrestricted for everything the catalog doesn't know.</p>
+                <div class="cap__tags"><span>apt</span><span>npm</span><span>pip</span><span>static binaries</span><span>custom tools</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/05</span>
+              <span class="cap__name">Dependency recovery</span>
+              <span class="cap__sum">The environment repairs itself — only when it is actually broken.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>An audit checks Ubuntu version, architecture, free storage, network, package-manager
+                health and installed tools. The package manager is repaired <strong>only when it is
+                actually inconsistent</strong> — <em>dpkg --configure -a</em>, <em>apt-get --fix-broken
+                install</em> — never blindly at launch. A BASE environment (curl + HTTPS certificate
+                trust) installs by default; an optional developer profile adds git, Node.js and npm.</p>
+                <div class="cap__tags"><span>audit</span><span>on-demand repair</span><span>dev profile</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/06</span>
+              <span class="cap__name">Projects &amp; servers</span>
+              <span class="cap__sum">Git clone, create, open in terminal. Local servers on loopback by default.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>Projects are first-class: clone from git, create from scratch, open straight in the
+                terminal. Managed services serve on <strong>loopback by default</strong>; LAN exposure only
+                ever happens by explicit choice. And the platform's limits are stated plainly — no
+                kernel-level isolation, no privileged ports — documented, not promised away.</p>
+                <div class="cap__tags"><span>git</span><span>loopback</span><span>lan opt-in</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cap" data-acc-item>
+            <button class="cap__head" data-acc-toggle aria-expanded="false">
+              <span class="cap__idx">/07</span>
+              <span class="cap__name">History, backup &amp; restore</span>
+              <span class="cap__sum">Nothing is wiped until you do it. One-tap .tar.gz export, scoped restore.</span>
+              <span class="cap__plus" aria-hidden="true"></span>
+            </button>
+            <div class="cap__body" data-acc-panel>
+              <div class="cap__body-inner">
+                <p>Terminal sessions persist as full transcripts (scrollback + screen) with metadata;
+                previous runs return as <strong>read-only history tabs</strong> with "new shell in this
+                directory". One tap exports a <strong>.tar.gz</strong> through the system file picker —
+                projects and history always, full environment optional; restore is scoped
+                (projects / history / environment) with keep-vs-overwrite and the same hardened extractor
+                the installer uses. Cache cleanup — per project or whole system — reports
+                <strong>exact bytes</strong> before you confirm.</p>
+                <div class="cap__tags"><span>tar.gz</span><span>scoped restore</span><span>history tabs</span><span>cache cleanup</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 · TERMINAL SHOWCASE ============ -->
+    <section class="section showcase" id="terminal">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[03]</span>
+          <span class="sec-head__label">The terminal</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="showcase__grid">
+          <div class="showcase__term" data-tilt data-reveal>
+            <div class="term" id="showcase-term" data-cursor>
+              <div class="term__bar">
+                <span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="term__title">projects/notes-app — session 03 — alive in background</span>
+              </div>
+              <div class="term__body" aria-label="Terminal workflow demo"></div>
+              <div class="term__keys" aria-hidden="true">
+                <i>ESC</i><i>CTRL</i><i>TAB</i><i>←</i><i>↑</i><i>↓</i><i>→</i><i>PASTE</i>
+              </div>
+            </div>
+            <p class="mono" style="margin-top:0.9rem">Stylized recreation of the session flow — not a screenshot.</p>
+          </div>
+          <div class="showcase__notes" data-reveal-group>
+            <div class="note">
+              <span class="note__idx">a.</span>
+              <div><h5>Extra-keys rows</h5><p>Termux-true modifier rows — Esc, Ctrl, Tab, arrows — with
+              pinch-to-zoom font sizing and tap-to-keyboard behavior.</p></div>
+            </div>
+            <div class="note">
+              <span class="note__idx">b.</span>
+              <div><h5>The real clipboard</h5><p>Long-press Copy/Paste wired to the actual Android
+              clipboard. It took until alpha.8 to get right; it's right now.</p></div>
+            </div>
+            <div class="note">
+              <span class="note__idx">c.</span>
+              <div><h5>Log sharing in two taps</h5><p>The floating button hands the whole session
+              transcript to any chat or AI app — paste it into your assistant and keep working.</p></div>
+            </div>
+            <div class="note">
+              <span class="note__idx">d.</span>
+              <div><h5>History that persists</h5><p>Sessions are saved with metadata and come back as
+              read-only history tabs — open a new shell in the exact directory you left.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 · HOW ============ -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[04]</span>
+          <span class="sec-head__label">How it works</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="steps" data-reveal-group>
+          <div class="step">
+            <span class="step__num">step / 01</span>
+            <h4>Sideload the APK</h4>
+            <p>12 MB, Android 8.0+. Allow "install unknown apps" for your browser and open the APK.
+            No account, no signup, and the SHA-256 is published with every release so you can verify
+            what you install.</p>
+          </div>
+          <div class="step">
+            <span class="step__num">step / 02</span>
+            <h4>Tap Install Ubuntu</h4>
+            <p>The rootfs downloads with HTTP-Range resume, exponential backoff and checksum
+            verification before anything is trusted. Native dependencies self-heal — you watch a log
+            that tells the truth, not a spinner that guesses.</p>
+          </div>
+          <div class="step">
+            <span class="step__num">step / 03</span>
+            <h4>Get to work</h4>
+            <p>Terminal, projects, servers, catalog installs. It stays alive in the background and
+            notifies you when long runs finish. Your files persist until <em>you</em> decide otherwise —
+            and a one-tap <code>.tar.gz</code> backs everything up.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · PRINCIPLES ============ -->
+    <section class="section" id="principles" style="padding-top:0">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[05]</span>
+          <span class="sec-head__label">Principles</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="principles" data-reveal-group>
+          <div class="principle">
+            <span class="principle__glyph">$ local-first</span>
+            <h4>Your device, your data</h4>
+            <p>Files live in app-private storage on your phone. No telemetry, no analytics, no ads,
+            no accounts. The network is used only when you trigger a download — rootfs, packages,
+            git clones. <a class="u-link" href="privacy/" style="color:var(--ink)">Privacy policy</a>.</p>
+          </div>
+          <div class="principle">
+            <span class="principle__glyph">$ honest-engineering</span>
+            <h4>Verified, or not claimed</h4>
+            <p>Every claim is separated into build-verified, host-verified and device-verified — and
+            anything not labeled is not verified. Failures report recovery steps instead of hiding
+            behind a spinner.</p>
+          </div>
+          <div class="principle">
+            <span class="principle__glyph">$ yours-to-keep</span>
+            <h4>Open source, durable</h4>
+            <p>Persistence until you decide otherwise; backup &amp; restore built in. The whole source —
+            app, runtime, docs — is <a class="u-link" href="https://github.com/superz1402/linuxify"
+            rel="noopener" target="_blank" style="color:var(--ink)">GPL-3.0-or-later</a>. Audit it, fork it, build it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · DOWNLOAD ============ -->
+    <section class="section download" id="download">
+      <div class="download__glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[06]</span>
+          <span class="sec-head__label">Download</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <h2 class="display download__title" data-reveal>Get the APK<span class="accent-type">.</span></h2>
+        <div class="dl-card" data-reveal>
+          <div class="dl-card__main">
+            <div class="ver">v0.1.0-alpha.15</div>
+            <div class="mono date">Published Oct 19, 2026 — latest alpha</div>
+            <dl class="spec">
+              <div class="row"><dt>File</dt><dd>linuxify-0.1.0-alpha.15-release.apk</dd></div>
+              <div class="row"><dt>Size</dt><dd>12,568,978 bytes — 12.0 MB</dd></div>
+              <div class="row"><dt>SHA-256</dt>
+                <dd>bb40ef63…b34e4177
+                  <button class="copy-btn" data-copy="bb40ef63c643436f0527cf7e36ac9bbabe2813803b65b9f6dd1d03beb34e4177" aria-label="Copy full SHA-256">
+                    <span class="copy-label">copy</span>
+                  </button>
+                </dd></div>
+              <div class="row"><dt>Userspace</dt><dd>Ubuntu 24.04.5 LTS (noble) · arm64</dd></div>
+              <div class="row"><dt>Requires</dt><dd>Android 8.0+ (API 26)</dd></div>
+              <div class="row"><dt>License</dt><dd class="accent">GPL-3.0-or-later · free</dd></div>
+            </dl>
+            <div class="hero__actions" style="margin-top:1.8rem">
+              <a class="btn btn--accent btn--lg magnetic"
+                 href="https://github.com/Bilal140202/linuxify-app/releases/download/v0.1.0-alpha.15/linuxify-0.1.0-alpha.15-release.apk">
+                <span class="btn-flip"><span class="btn-flip__labels"><span>Download APK</span><span>Download APK</span></span></span>
+                <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v7M3 5.5L6 8.5 9 5.5M1.5 10.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="btn btn--lg magnetic" href="https://github.com/superz1402/linuxify/releases" rel="noopener" target="_blank">
+                <span>All releases</span>
+                <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <aside class="dl-card__side">
+            <div class="note-sm">
+              <p style="margin-bottom:0.9rem"><strong style="color:var(--ink)">Install in three steps.</strong><br>
+              1 — Allow "install unknown apps" for your browser.<br>
+              2 — Open the downloaded APK and confirm.<br>
+              3 — Tap <em>Install Ubuntu</em> inside the app and watch the log.</p>
+              <p><strong style="color:var(--ink)">Verify before you trust.</strong> Compare the checksum:
+              <br><span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--term-green); word-break:break-all">sha256sum linuxify-*.apk</span></p>
+            </div>
+            <div class="note-sm">
+              <p>Alpha software — expect rough edges and report them. Full terms:
+              <a href="terms/">Terms of Use</a>. Prefer building from source?
+              <a href="https://github.com/superz1402/linuxify/blob/main/docs/RECOVERY.md" rel="noopener" target="_blank">docs/RECOVERY.md</a>.</p>
+            </div>
+          </aside>
+        </div>
+        <div class="alt-links" data-reveal>
+          <a class="u-link mono mono--ink" href="changelog/">Read the changelog →</a>
+          <a class="u-link mono mono--ink" href="https://github.com/superz1402/linuxify/issues" rel="noopener" target="_blank">Report an issue ↗</a>
+          <a class="u-link mono mono--ink" href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">Source repository ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 · FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-head__idx">[07]</span>
+          <span class="sec-head__label">Questions</span>
+          <span class="sec-head__rule" data-reveal-line></span>
+        </div>
+        <div class="faq-wrap" data-reveal>
+          <div class="faq" data-acc="single">
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Do I need root?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>No — and that's the point. Linuxify uses
+              proot to run an entire Ubuntu userspace as an unprivileged, app-private process. Nothing
+              touches your system partition, no bootloader changes, no warranty gone.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Is this just Termux?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>No. Linuxify vendors the GPL-licensed Termux
+              <em>terminal-emulator / terminal-view</em> stack (fully attributed) for its terminal — but it
+              does not depend on the Termux app, doesn't share its environment, and ships its own
+              pinned runtime: proot, libtalloc, libandroid-shmem, all SHA-256-verified at build time.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Will my files survive restarts and updates?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>Yes. Projects, the environment, session history
+              and service definitions persist until you uninstall, clear app data in system settings, or
+              run the explicit in-app Reset — nothing else wipes them. For extra safety there's one-tap
+              <strong>.tar.gz backup</strong> with scoped restore (projects / history / environment).</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Does it work offline?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>After installation, yes — everything runs
+              locally on the device. The network is only used when you trigger it: the initial Ubuntu
+              download, package installs, git clones, or serving to LAN on purpose. None of your data
+              is ever sent anywhere by the app itself.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Why isn't it on Google Play?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>Linuxify is on an open alpha cycle. It also
+              deliberately targets SDK 28 — Android 10+ blocks executing app-private binaries for apps
+              targeting SDK 29+, and that execution is exactly the point of this app. The decision is
+              documented in the source. Sideload now; distribution channels may come later.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">What do I need to run it?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>Android 8.0+ (API 26). Primary architecture is
+              arm64 — most phones from the last several years. Budget roughly 1.5–2 GB of storage for
+              the Ubuntu environment plus whatever your projects need.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">Is it private?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>There is no telemetry, no analytics, no ads and
+              no accounts — there's nothing to send data <em>to</em>. Crash reports aren't uploaded either:
+              the in-app reporter shows a copyable trace that stays on your device until
+              <em>you</em> choose to paste it into a GitHub issue. Read the
+              <a href="privacy/">privacy policy</a>.</p></div>
+            </div>
+            <div class="faq-item" data-acc-item>
+              <button class="faq-item__q" data-acc-toggle aria-expanded="false">The app crashed. Now what?<span class="icon" aria-hidden="true"></span></button>
+              <div class="faq-item__a" data-acc-panel><p>Open it again — the crash reporter shows the
+              full trace with a copy button. Bring it to
+              <a href="https://github.com/superz1402/linuxify/issues" rel="noopener" target="_blank">the issue tracker</a>
+              and it goes from "it broke" to "here's the exact line" in one paste. Silent crashes were
+              eliminated in alpha.5; the next crash you see will at least introduce itself.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__pitch">
+          <a class="nav__brand" href="./">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+              <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+            </svg>
+            <span>linuxify</span><span class="tag">/ android</span>
+          </a>
+          <p>A real Ubuntu userspace, a real terminal, real tools — running locally on the device
+          you already own. Free and open source under GPL-3.0-or-later.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#terminal">Terminal</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="about/">About</a></li>
+            <li><a href="changelog/">Changelog</a></li>
+            <li><a href="privacy/">Privacy policy</a></li>
+            <li><a href="terms/">Terms of use</a></li>
+            <li><a href="license/">Licenses</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">Source &amp; issues <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/superz1402/linuxify/releases" rel="noopener" target="_blank">Releases <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://ansaribilal.com" rel="noopener" target="_blank">Developer site <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/Bilal140202" rel="noopener" target="_blank">GitHub profile <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">linuxify</div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span class="mono">© <span data-year>2026</span> Ansari Mohammad Bilal</span>
+        <span class="mono">GPL-3.0-or-later</span>
+        <span class="mono">v0.1.0-alpha.15</span>
+        <span class="mono">no cookies · no trackers · no analytics</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Linuxify</title>
+  <meta name="description" content="Linuxify privacy policy: no telemetry, no analytics, no ads, no accounts. Your data lives on your device. What the app does and does not do with the network, explained plainly.">
+  <link rel="canonical" href="https://bilal140202.github.io/linuxify-app/privacy/">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Linuxify">
+  <meta property="og:title" content="Privacy Policy — Linuxify">
+  <meta property="og:description" content="No telemetry, no analytics, no ads, no accounts. Your data lives on your device.">
+  <meta property="og:url" content="https://bilal140202.github.io/linuxify-app/privacy/">
+  <meta property="og:image" content="https://bilal140202.github.io/linuxify-app/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+          <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+        </svg>
+        <span>linuxify</span><span class="tag">/ android</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../#features">Features</a>
+        <a href="../#terminal">Terminal</a>
+        <a href="../#download">Download</a>
+        <a href="../#faq">FAQ</a>
+        <a href="../about/">About</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn magnetic" href="../#download">
+          <span class="btn-flip"><span class="btn-flip__labels"><span>Get the APK</span><span>Get the APK</span></span></span>
+        </a>
+        <button class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="m-link" href="../#features"><span class="idx">01</span>Features</a>
+      <a class="m-link" href="../#terminal"><span class="idx">02</span>Terminal</a>
+      <a class="m-link" href="../#download"><span class="idx">03</span>Download</a>
+      <a class="m-link" href="../#faq"><span class="idx">04</span>FAQ</a>
+      <a class="m-link" href="../about/"><span class="idx">05</span>About</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <span class="mono">v0.1.0-alpha.15</span>
+      <a class="mono" href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero__crumbs mono">
+          <a href="../">~/linuxify</a><span class="sep">/</span><span class="current">privacy</span>
+        </div>
+        <h1 data-reveal>Privacy,<br>in plain <span class="accent-type">words.</span></h1>
+        <p class="lead" data-reveal>Linuxify collects nothing, sends nothing, and accounts for nothing.
+        This page explains exactly what that means — and the few moments the app touches the network,
+        all of which you trigger yourself.</p>
+        <div class="page-hero__meta">
+          <span>version <b>1.0</b></span>
+          <span>updated <b>October 20, 2026</b></span>
+          <span>applies to <b>com.linuxify.app · all releases</b></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="container">
+        <div class="page-body__grid">
+          <aside class="page-body__aside">
+            <div class="toc-label">contents</div>
+            <nav class="toc">
+              <a href="#summary">01 · Summary</a>
+              <a href="#collect">02 · What we collect</a>
+              <a href="#device">03 · What stays on your device</a>
+              <a href="#network">04 · Network activity</a>
+              <a href="#permissions">05 · Android permissions</a>
+              <a href="#crashes">06 · Crash reports</a>
+              <a href="#website">07 · This website</a>
+              <a href="#children">08 · Children</a>
+              <a href="#changes">09 · Changes</a>
+              <a href="#contact">10 · Contact</a>
+            </nav>
+          </aside>
+
+          <div class="legal" data-reveal>
+            <section id="summary">
+              <h2><span class="n">01</span>Summary</h2>
+              <p>Linuxify is a fully local application. It has no servers of its own, no accounts, no
+              analytics SDKs, no advertising SDKs, and no telemetry of any kind. There is literally
+              nothing built into the app that could transmit your data to the developer, because there
+              is no developer-side infrastructure to receive it.</p>
+              <p>The app uses the network only when <strong>you</strong> ask it to: downloading the
+              Ubuntu base system, installing or updating packages you selected, cloning a git
+              repository you specified, or serving content to your local network when you explicitly
+              choose to. Your projects, files, terminal history and settings live in app-private
+              storage on your device and never leave it.</p>
+            </section>
+
+            <section id="collect">
+              <h2><span class="n">02</span>What we collect</h2>
+              <p>Nothing. Specifically:</p>
+              <ul>
+                <li>No personal data, no identifiers, no device fingerprints.</li>
+                <li>No usage analytics, no session tracking, no event logging to any remote endpoint.</li>
+                <li>No advertising, no ad identifiers, no cross-app tracking.</li>
+                <li>No accounts, sign-ups, or third-party logins.</li>
+                <li>No cookies or similar technologies inside the app.</li>
+              </ul>
+              <p>Because nothing is collected, there is nothing to sell, nothing to share, and nothing
+              to leak from a developer-side breach.</p>
+            </section>
+
+            <section id="device">
+              <h2><span class="n">03</span>What stays on your device</h2>
+              <p>All of it. Everything Linuxify works with lives in Android's app-private storage —
+              a location no other app can read on an unrooted device:</p>
+              <ul>
+                <li>The installed Ubuntu environment and its packages.</li>
+                <li>Your projects, including anything you build inside them.</li>
+                <li>Terminal session transcripts and their metadata (start directory, timestamps).</li>
+                <li>Service definitions, app settings, and diagnostic data.</li>
+              </ul>
+              <p>This data persists across restarts and app updates. It is removed when you uninstall
+              the app, use Android's "Clear data" for the app, or run the explicit in-app reset. You
+              can also export a backup archive (<code>.tar.gz</code>) through the system file picker at
+              any time — that archive goes wherever you put it, and the app keeps no copy.</p>
+            </section>
+
+            <section id="network">
+              <h2><span class="n">04</span>Network activity</h2>
+              <p>The app only connects to the network when you trigger an action that needs it. These
+              are the only remote destinations the app can contact, and only in those situations:</p>
+              <table>
+                <tr><th>Action you take</th><th>Where it connects</th></tr>
+                <tr><td>Install Ubuntu</td><td>Ubuntu's official CD-image servers (cdimage.ubuntu.com)</td></tr>
+                <tr><td>Install / update packages</td><td>Ubuntu package mirrors; npm registry; PyPI; the pinned static-binary hosts for catalog tools</td></tr>
+                <tr><td>Clone or push a project</td><td>The git remote you provided</td></tr>
+                <tr><td>Serve a project to LAN</td><td>Your own local network — off unless you switch it on</td></tr>
+              </table>
+              <p>Package managers inside the guest environment (apt, npm, pip) behave as they would on
+              any Linux machine: they contact their own ecosystems' infrastructure and send only the
+              standard technical requests those systems require. No data is returned to the developer
+              because there is no developer endpoint.</p>
+            </section>
+
+            <section id="permissions">
+              <h2><span class="n">05</span>Android permissions</h2>
+              <p>Linuxify requests the minimum Android permissions its features need:</p>
+              <ul>
+                <li><strong>Notifications</strong> — completion alerts for commands and sessions that
+                finish in the background, plus the silent persistent notification required by the
+                foreground service. You can deny this without losing core functionality.</li>
+                <li><strong>Partial wake lock</strong> — keeps running sessions and servers alive
+                while the screen is off. In-process capability; not user-facing.</li>
+                <li><strong>Storage access via the system file picker (SAF)</strong> — used only when
+                you export a backup archive or restore one, and only for the exact file or folder you
+                pick.</li>
+              </ul>
+              <p>Linuxify never requests access to your contacts, location, microphone, camera, SMS,
+              call logs, or full storage.</p>
+            </section>
+
+            <section id="crashes">
+              <h2><span class="n">06</span>Crash reports</h2>
+              <p>When the app crashes, it saves the error trace <strong>locally</strong> and shows it to
+              you with a copy button the next time you open the app. Nothing is uploaded — there is no
+              endpoint to upload it to. If you want help with a crash, you copy the trace yourself and
+              paste it into an issue on the public repository. You are the courier; you decide what
+              travels and when.</p>
+            </section>
+
+            <section id="website">
+              <h2><span class="n">07</span>This website</h2>
+              <p>This site is fully static and hosted on GitHub Pages. It sets no cookies, loads no
+              analytics, and embeds no tracking pixels. It loads two font CDNs (Fontshare and Google
+              Fonts) and two JavaScript CDNs for scroll animations; your browser's standard requests
+              to those CDNs are governed by those providers' own policies. GitHub, as the host, may
+              log standard server request data under its own privacy terms — see GitHub's privacy
+              statement for details.</p>
+            </section>
+
+            <section id="children">
+              <h2><span class="n">08</span>Children</h2>
+              <p>Linuxify is a developer tool and is not directed at children under 13. It collects no
+              data from anyone of any age, so there is nothing age-gated to protect — but if you are a
+              parent and have questions, contact us through the channels below.</p>
+            </section>
+
+            <section id="changes">
+              <h2><span class="n">09</span>Changes to this policy</h2>
+              <p>If the app ever gains a feature that changes this picture — and the philosophy says it
+              shouldn't — this page will be updated first, with a new version number and date, before
+              the feature ships. Historical versions of this page are available in the site's public
+              repository, so you can always see what changed and when.</p>
+            </section>
+
+            <section id="contact">
+              <h2><span class="n">10</span>Contact</h2>
+              <p>Questions about privacy, data, or anything else in this document:</p>
+              <ul>
+                <li>Open an issue:
+                  <a href="https://github.com/superz1402/linuxify/issues" rel="noopener" target="_blank">github.com/superz1402/linuxify/issues</a></li>
+                <li>Developer site: <a href="https://ansaribilal.com" rel="noopener" target="_blank">ansaribilal.com</a></li>
+                <li>Email: bilalansari1402@gmail.com</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__pitch">
+          <a class="nav__brand" href="../">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect width="24" height="24" rx="4" fill="#FF4D00"/>
+              <path d="M6 8l4 4-4 4" stroke="#0B0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="12.5" y="14.6" width="6" height="2.4" rx="0.6" fill="#0B0B0C"/>
+            </svg>
+            <span>linuxify</span><span class="tag">/ android</span>
+          </a>
+          <p>A real Ubuntu userspace, a real terminal, real tools — running locally on the device
+          you already own. Free and open source under GPL-3.0-or-later.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="../#features">Features</a></li>
+            <li><a href="../#terminal">Terminal</a></li>
+            <li><a href="../#download">Download</a></li>
+            <li><a href="../#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="../about/">About</a></li>
+            <li><a href="../changelog/">Changelog</a></li>
+            <li><a href="./">Privacy policy</a></li>
+            <li><a href="../terms/">Terms of use</a></li>
+            <li><a href="../license/">Licenses</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="https://github.com/superz1402/linuxify" rel="noopener" target="_blank">Source &amp; issues <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/superz1402/linuxify/releases" rel="noopener" target="_blank">Releases <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://ansaribilal.com" rel="noopener" target="_blank">Developer site <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://github.com/Bilal140202" rel="noopener" target="_blank">GitHub profile <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">linuxify</div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span class="mono">© <span data-year>2026</span> Ansari Mohammad Bilal</span>
+        <span class="mono">GPL-3.0-or-later</span>
+        <span class="mono">v0.1.0-alpha.15</span>
+        <span class="mono">no cookies · no trackers · no analytics</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
